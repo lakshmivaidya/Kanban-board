@@ -1,9 +1,11 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import { useTasks } from "../context/TaskContext";
+import { useContext } from "react";
+import { TaskContext } from "../context/TaskContext";
+
 
 const TaskCard = ({ task, onClick }) => {
-  const { deleteTask } = useTasks();
+  const { deleteTask } = useContext(TaskContext);
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: task.id,
   });
@@ -25,7 +27,7 @@ const TaskCard = ({ task, onClick }) => {
       <p className="text-sm text-gray-600">{task.description}</p>
 
       <button
-        className="text-red-500 text-sm mt-2"
+        className="text-red-500 text-sm mt-2 p-3 cursor-pointer"
         onClick={(e) => {
           e.stopPropagation();
           deleteTask(task.id);

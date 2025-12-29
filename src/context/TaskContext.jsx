@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const TaskContext = createContext();
+export const TaskContext = createContext();
 export const useTasks = () => useContext(TaskContext);
 
 export const TaskProvider = ({ children }) => {
@@ -21,7 +21,8 @@ export const TaskProvider = ({ children }) => {
     );
 
   const deleteTask = (id) =>
-    setTasks((prev) => prev.filter((task) => task.id !== id));
+  {console.log("Delete")
+    setTasks((prev) => prev.filter((task) => task.id !== id));}
 
   return (
     <TaskContext.Provider value={{ tasks, addTask, updateTask, deleteTask }}>
